@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>জৈনপুর জামে মসজিদ হিসাব-২০২৬</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{box-sizing:border-box;}
+body{
+margin:0;
+font-family:Arial;
+background:#eef2f7;
+}
+header{
+background:linear-gradient(135deg,#0b8457,#109e72);
+color:white;
+text-align:center;
+padding:22px;
+}
+.container{
+width:95%;
+max-width:1200px;
+margin:auto;
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:12px;
+margin-top:15px;
+}
+.card{
+background:white;
+padding:18px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 5px 12px rgba(0,0,0,0.08);
+}
+.card h3{margin:0;color:#666;font-size:14px;}
+.card h2{margin:5px 0;color:#0b8457;}
+.section{
+background:white;
+margin-top:18px;
+padding:18px;
+border-radius:12px;
+box-shadow:0 5px 12px rgba(0,0,0,0.08);
+}
+.section h2{
+margin-top:0;
+color:#0b8457;
+}
+.namaz{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+gap:10px;
+}
+.namaz div{
+background:#f6f7fb;
+padding:10px;
+border-radius:8px;
+text-align:center;
+}
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+th,td{
+border:1px solid #ddd;
+padding:7px;
+text-align:center;
+font-size:14px;
+}
+th{
+background:#0b8457;
+color:white;
+}
+.hadith{
+font-size:30px;
+text-align:center;
+line-height:1.6;
+color:#444;
+}
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:12px;
+margin-top:25px;
+}
+@media(max-width:600px){
+th,td{font-size:12px;padding:5px;}
+.card h2{font-size:18px;}
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1>🕌 জৈনপুর জামে মসজিদ</h1>
+<p>জৈনপুর সমাজের হিসাব</p>
+</header>
+
+<div class="container">
+
+<!-- DASHBOARD CARDS -->
+<div class="cards">
+<div class="card">
+<h3>সর্বমোট আয়</h3>
+<h2>744165 ৳</h2>
+</div>
+<div class="card">
+<h3>সর্বমোট ব্যয়</h3>
+<h2>677546 ৳</h2>
+</div>
+<div class="card">
+<h3>বর্তমান ফান্ড</h3>
+<h2>66619 ৳</h2>
+</div>
+<div class="card">
+<h3>আজকের তারিখ</h3>
+<h2 id="date"></h2>
+</div>
+</div>
+
+<!-- NAMAZ TIME -->
+<div class="section">
+<h2>🕐 আজকের নামাজের সময় (ঢাকা)</h2>
+<div class="namaz">
+<div>ফজর<br><b id="fajr"></b></div>
+<div>যোহর<br><b id="dhuhr"></b></div>
+<div>আসর<br><b id="asr"></b></div>
+<div>মাগরিব<br><b id="maghrib"></b></div>
+<div>এশা<br><b id="isha"></b></div>
+</div>
+</div>
+
+<!-- SEHRI & IFTAR CARDS -->
+<div class="cards" style="margin-top:18px;">
+<div class="card">
+<h3>সেহরির শেষ সময়</h3>
+<h2 id="sehri">--</h2>
+</div>
+<div class="card">
+<h3>ইফতার সময়</h3>
+<h2 id="iftar">--</h2>
+</div>
+</div>
+
+<!-- HADITH -->
+<div class="section">
+<h2>📖 রমজানের হাদিস</h2>
+<div class="hadith" id="hadith"></div>
+</div>
+
+<!-- MONTHLY ACCOUNT -->
+<div class="section">
+<h2>📋 মাসভিত্তিক হিসাব (জুলাই ২০২৪ - ডিসেম্বর ২০২৫)</h2>
+<table>
+<tr><th>মাস</th><th>আয়</th><th>ব্যয়</th></tr>
+<tr><td>জুলাই ২০২৪</td><td>9668</td><td>10029</td></tr>
+<tr><td>আগষ্ট ২০২৪</td><td>10372</td><td>12827</td></tr>
+<tr><td>সেপ্টেম্বর ২০২৪</td><td>15570</td><td>10256</td></tr>
+<tr><td>অক্টোবর ২০২৪</td><td>9802</td><td>7020</td></tr>
+<tr><td>নভেম্বর ২০২৪</td><td>33575</td><td>6875</td></tr>
+<tr><td>ডিসেম্বর ২০২৪</td><td>7395</td><td>12912</td></tr>
+<tr><td>জানুয়ারি ২০২৫</td><td>12910</td><td>5921</td></tr>
+<tr><td>ফেব্রুয়ারী ২০২৫</td><td>8270</td><td>6620</td></tr>
+<tr><td>মার্চ ২০২৫</td><td>13450</td><td>13677</td></tr>
+<tr><td>এপ্রিল ২০২৫</td><td>8665</td><td>30887</td></tr>
+<tr><td>মে ২০২৫</td><td>13225</td><td>8152</td></tr>
+<tr><td>জুন ২০২৫</td><td>10120</td><td>8779</td></tr>
+<tr><td>জুলাই ২০২৫</td><td>10060</td><td>8477</td></tr>
+<tr><td>আগষ্ট ২০২৫</td><td>9910</td><td>17067</td></tr>
+<tr><td>সেপ্টেম্বর ২০২৫</td><td>16070</td><td>10927</td></tr>
+<tr><td>অক্টোবর ২০২৫</td><td>11525</td><td>6985</td></tr>
+<tr><td>নভেম্বর ২০২৫</td><td>8770</td><td>2480</td></tr>
+<tr><td>ডিসেম্বর ২০২৫</td><td>14760</td><td>5655</td></tr>
+</table>
+<p><b>মোট আয়:</b> 224117 টাকা</p>
+<p><b>মোট ব্যয়:</b> 185546 টাকা</p>
+<p><b>বর্তমান ফান্ড:</b> 38571 টাকা</p>
+</div>
+
+<!-- SALARY ACCOUNT -->
+<div class="section">
+<h2>👳 বেতন ও রমজানের হিসাব (২০২৫)</h2>
+<table>
+<tr><th>বিবরণ</th><th>পরিমাণ</th></tr>
+<tr><td>মোট আয়</td><td>520048</td></tr>
+<tr><td>ইমাম, মোয়াজ্জিন, সহযোগী (বেতন)</td><td>372000</td></tr>
+<tr><td>রমজানের হাদিয়া</td><td>108000</td></tr>
+<tr><td>রমজানের ইফতার</td><td>12000</td></tr>
+</table>
+<p><b>মোট ব্যয়:</b> 492000 টাকা</p>
+<p><b>মোট ফান্ড:</b> 28048 টাকা</p>
+</div>
+
+<!-- CHART
+<div class="section">
+<h2>📊 আয় বনাম ব্যয়</h2>
+<canvas id="chart"></canvas>
+</div> -->
+
+</div>
+
+<footer>© জৈনপুর জামে মসজিদ</footer>
+
+<script>
+document.getElementById("date").innerHTML=new Date().toLocaleDateString("bn-BD");
+
+fetch("https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh")
+.then(res=>res.json())
+.then(data=>{
+document.getElementById("fajr").innerText=data.data.timings.Fajr;
+document.getElementById("dhuhr").innerText=data.data.timings.Dhuhr;
+document.getElementById("asr").innerText=data.data.timings.Asr;
+document.getElementById("maghrib").innerText=data.data.timings.Maghrib;
+document.getElementById("isha").innerText=data.data.timings.Isha;
+document.getElementById("sehri").innerText=data.data.timings.Fajr;
+document.getElementById("iftar").innerText=data.data.timings.Maghrib;
+});
+
+const ctx=document.getElementById("chart");
+new Chart(ctx,{
+type:"bar",
+data:{
+labels:["Jul","Aug","Sep","Oct","Nov","Dec"],
+datasets:[
+{label:"Income",data:[9668,10372,15570,9802,33575,7395]},
+{label:"Expense",data:[10029,12827,10256,7020,6875,12912]}
+]
+}
+});
+
+const hadiths=[
+"যে ব্যক্তি ঈমানের সাথে রমজানে রোজা রাখে তার পূর্বের গুনাহ মাফ করা হয়। (বুখারি)",
+"রোজাদারের মুখের গন্ধ আল্লাহর কাছে মেশকের থেকেও উত্তম। (মুসলিম)",
+"রোজা ঢাল স্বরূপ। (বুখারি)",
+"যে ব্যক্তি রোজাদারকে ইফতার করাবে সে সমান সওয়াব পাবে। (তিরমিজি)"
+];
+
+let i=0;
+function changeHadith(){
+document.getElementById("hadith").innerText=hadiths[i];
+i++;
+if(i>=hadiths.length){i=0;}
+}
+changeHadith();
+setInterval(changeHadith,6000);
+</script>
+
+</body>
+</html>
