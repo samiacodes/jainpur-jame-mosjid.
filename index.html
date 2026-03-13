@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>জৈনপুর জামে মসজিদ হিসাব-২০২৬</title>
+<title>জৈনপুর জামে মসজিদ হিসাব</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -14,17 +14,41 @@ margin:0;
 font-family:Arial;
 background:#eef2f7;
 }
+
+/* NOTICE CARD */
+.notice-card{
+background:#ffeb3b;
+color:#000;
+padding:15px;
+border-radius:12px;
+text-align:center;
+font-weight:bold;
+font-size:16px;
+margin:10px auto;
+max-width:1200px;
+box-shadow:0 5px 12px rgba(0,0,0,0.1);
+}
+
+/* HEADER */
 header{
 background:linear-gradient(135deg,#0b8457,#109e72);
 color:white;
 text-align:center;
 padding:22px;
+position:relative;
+z-index:1;
 }
+
+/* CONTAINER */
 .container{
 width:95%;
 max-width:1200px;
 margin:auto;
+position:relative;
+z-index:1;
 }
+
+/* CARDS */
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
@@ -40,6 +64,8 @@ box-shadow:0 5px 12px rgba(0,0,0,0.08);
 }
 .card h3{margin:0;color:#666;font-size:14px;}
 .card h2{margin:5px 0;color:#0b8457;}
+
+/* SECTION */
 .section{
 background:white;
 margin-top:18px;
@@ -51,6 +77,8 @@ box-shadow:0 5px 12px rgba(0,0,0,0.08);
 margin-top:0;
 color:#0b8457;
 }
+
+/* NAMAZ GRID */
 .namaz{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
@@ -62,6 +90,8 @@ padding:10px;
 border-radius:8px;
 text-align:center;
 }
+
+/* TABLES */
 table{
 width:100%;
 border-collapse:collapse;
@@ -77,12 +107,16 @@ th{
 background:#0b8457;
 color:white;
 }
+
+/* HADITH */
 .hadith{
 font-size:30px;
 text-align:center;
 line-height:1.6;
 color:#444;
 }
+
+/* FOOTER */
 footer{
 background:#222;
 color:white;
@@ -90,33 +124,42 @@ text-align:center;
 padding:12px;
 margin-top:25px;
 }
+
+/* RESPONSIVE */
 @media(max-width:600px){
 th,td{font-size:12px;padding:5px;}
 .card h2{font-size:18px;}
+.notice-card{font-size:14px;padding:10px;}
 }
 </style>
 </head>
 
 <body>
+
+<!-- NOTICE CARD -->
+<div class="notice-card">
+🔔 📢 গুরুত্বপূর্ণ নোটিশ: মাসভিত্তিক হিসাব (জুলাই ২০২৪ - ডিসেম্বর ২০২৫) এবং বেতন ও রমজানের হাদিয়া হিসাব (২০২৫) আপডেট সম্পন্ন হয়েছে, সকল সদস্য নিজেরা দেখতে পারবেন। সম্পূর্ণ ওয়েবসাইটের কাজ চলমান। সকল সদস্যের মোবাইল নাম্বার পাওয়ার সাথে সাথে পূর্ণাঙ্গ হিসাব দেখার সুবিধা প্রদান করা হবে। আপনাদের সহযোগিতার জন্য ধন্যবাদ।🔔 📢
+</div>
+
 <header>
 <h1>🕌 জৈনপুর জামে মসজিদ</h1>
 <p>জৈনপুর সমাজের হিসাব</p>
 </header>
 
-<div class="container">
+<div class="container" id="mainContent">
 
 <!-- DASHBOARD CARDS -->
 <div class="cards">
 <div class="card">
-<h3>সর্বমোট আয়</h3>
+<h3> সর্বমোট আয়</h3>
 <h2>744165 ৳</h2>
 </div>
 <div class="card">
-<h3>সর্বমোট ব্যয়</h3>
+<h3> সর্বমোট ব্যয়</h3>
 <h2>677546 ৳</h2>
 </div>
 <div class="card">
-<h3>বর্তমান ফান্ড</h3>
+<h3> বর্তমান ফান্ড</h3>
 <h2>66619 ৳</h2>
 </div>
 <div class="card">
@@ -198,19 +241,21 @@ th,td{font-size:12px;padding:5px;}
 <p><b>মোট ফান্ড:</b> 28048 টাকা</p>
 </div>
 
-<!-- CHART
+<!-- CHART -->
 <div class="section">
 <h2>📊 আয় বনাম ব্যয়</h2>
 <canvas id="chart"></canvas>
-</div> -->
+</div>
 
 </div>
 
 <footer>© জৈনপুর জামে মসজিদ</footer>
 
 <script>
+// DATE
 document.getElementById("date").innerHTML=new Date().toLocaleDateString("bn-BD");
 
+// NAMAZ + SEHRI/IFTAR
 fetch("https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh")
 .then(res=>res.json())
 .then(data=>{
@@ -223,6 +268,7 @@ document.getElementById("sehri").innerText=data.data.timings.Fajr;
 document.getElementById("iftar").innerText=data.data.timings.Maghrib;
 });
 
+// CHART
 const ctx=document.getElementById("chart");
 new Chart(ctx,{
 type:"bar",
@@ -235,13 +281,13 @@ datasets:[
 }
 });
 
+// HADITH
 const hadiths=[
 "যে ব্যক্তি ঈমানের সাথে রমজানে রোজা রাখে তার পূর্বের গুনাহ মাফ করা হয়। (বুখারি)",
 "রোজাদারের মুখের গন্ধ আল্লাহর কাছে মেশকের থেকেও উত্তম। (মুসলিম)",
 "রোজা ঢাল স্বরূপ। (বুখারি)",
 "যে ব্যক্তি রোজাদারকে ইফতার করাবে সে সমান সওয়াব পাবে। (তিরমিজি)"
 ];
-
 let i=0;
 function changeHadith(){
 document.getElementById("hadith").innerText=hadiths[i];
@@ -250,6 +296,7 @@ if(i>=hadiths.length){i=0;}
 }
 changeHadith();
 setInterval(changeHadith,6000);
+
 </script>
 
 </body>
